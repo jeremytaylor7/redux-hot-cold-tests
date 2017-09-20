@@ -1,6 +1,6 @@
 import {
-    NEW_GAME,
-    MAKE_GUESS,
+    RESET_GAME,
+    TRY_GUESS,
     TOGGLE_INFO_MODAL
 } from './actions';
 
@@ -13,14 +13,14 @@ const initialState = {
 
 export default (state, action) => {
     state = state || initialState;
-    if (action.type === NEW_GAME) {
+    if (action.type === RESET_GAME) {
         state = Object.assign({
         }, initialState, {
-            correctAnswer: action.correctAnswer
-        });
+                correctAnswer: action.correctAnswer
+            });
         return state;
     }
-    else if (action.type === MAKE_GUESS) {
+    else if (action.type === TRY_GUESS) {
         const guess = parseInt(action.guess, 10);
         if (isNaN(guess)) {
             state = Object.assign({}, state, {
@@ -57,8 +57,8 @@ export default (state, action) => {
         return state;
     }
     else if (action.type === TOGGLE_INFO_MODAL) {
-         state = Object.assign({}, state, {
-             showInfoModal: !state.showInfoModal
+        state = Object.assign({}, state, {
+            showInfoModal: !state.showInfoModal
         });
         return state;
     }
